@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation);
 
         //inflate the header view at runtime
-        View headerLayout = navigationView.inflateHeaderView(R.layout.header_file);
-        ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageview);
+        //View headerLayout = navigationView.inflateHeaderView(R.layout.header_file);
+        //ImageView ivHeaderPhoto = headerLayout.findViewById(R.id.imageview);
 
         //setup drawer view
         setupDrawerContent(navigationView);
@@ -59,9 +59,16 @@ public class MainActivity extends AppCompatActivity {
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-
-
-//        //getting reference to the h
+        //navigate to activity logout
+        MenuItem logOutItem = navigationView.getMenu().findItem(R.id.signout);
+        logOutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+                return true;
+            }
+        });
 
     }
 
@@ -92,9 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.user:
                 fragmentClass = AccountFragment.class;
-                break;
-            case R.id.signout:
-                startActivity(new Intent(this, LoginActivity.class));
                 break;
             default:
                 fragmentClass = HomeFragment.class;
