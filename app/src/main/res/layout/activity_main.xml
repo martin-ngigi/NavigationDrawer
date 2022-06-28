@@ -10,11 +10,26 @@
     tools:openDrawer="left"
     >
 
-    <include
+    <!-- This LinearLayout represents the contents of the screen  -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/appbar_home_navigation_drawer"
-        layout="@layout/appbar_home_drawer"/>
+        android:orientation="vertical">
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
+        <!-- The main content view where fragments are loaded -->
+        <FrameLayout
+            android:id="@+id/flContent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -24,15 +39,7 @@
         app:menu="@menu/sidemenu"
         android:layout_gravity="start"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
-
-    </ScrollView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
